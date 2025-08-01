@@ -1,73 +1,85 @@
-# Welcome to your Lovable project
+# 🧙‍♂️ SW-Monsterpedia
 
-## Project info
+**Your Ultimate Summoners War Monster Database**
 
-**URL**: https://lovable.dev/projects/7ed1ff94-4182-45b5-9369-8825df341f87
+**SW-Monsterpedia** is a modern, fast, and comprehensive web application for **Summoners War**. It provides a complete database of all in-game monsters, allowing you to easily search and find detailed information on every monster, their skills, and unique IDs.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+- **📚 Extensive Database**  
+  A searchable directory of all monsters from the game.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7ed1ff94-4182-45b5-9369-8825df341f87) and start prompting.
+- **🔍 Powerful Search**  
+  Quickly filter monsters by name, element, archetype, or skill name using the integrated search bar.
 
-Changes made via Lovable will be committed automatically to this repo.
+- **📌 Detailed Information**  
+  View essential monster details, including their skills and their unique **Com2uS IDs**.
 
-**Use your preferred IDE**
+- **💎 Modern UI**  
+  Built with a clean, responsive design for a great user experience on any device.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🛠️ Technologies Used
 
-Follow these steps:
+- ⚡ **Vite** – A fast build tool for modern web projects  
+- ⚛️ **React** – A JavaScript library for building user interfaces  
+- 🟦 **TypeScript** – A typed superset of JavaScript that compiles to plain JavaScript  
+- 🎨 **Tailwind CSS** – A utility-first CSS framework for rapid UI development  
+- 🧩 **shadcn/ui** – A collection of reusable UI components built with Radix UI and Tailwind CSS  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🚀 Getting Started
 
-# Step 3: Install the necessary dependencies.
-npm i
+To run this project locally, follow these steps.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### ✅ Prerequisites
+
+- [Node.js](https://nodejs.org/) must be installed
+
+### 📥 Installation
+
+Clone the repository :
+
+```bash
+git clone https://github.com/manu-ovg/sw-monsterpedia.git
 ```
 
-**Edit a file directly in GitHub**
+Navigate to the project directory :
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+cd sw-monsterpedia
+```
+Install the dependencies :
 
-**Use GitHub Codespaces**
+```bash
+npm install
+```
+▶️ Usage
+Start the development server :
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run dev
+```
+Then, open your browser and go to :
+🌐 http://localhost:5173
 
-## What technologies are used for this project?
+📂 Data Sources
+This project uses two local JSON files as its data sources:
 
-This project is built with:
+bestiary.json – Base monster information (element, name, archetype, image, etc.)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+monsters.json – Skill information (Com2uS ID, skill IDs and names)
 
-## How can I deploy this project?
+These files are used to link monsters to their skills and display them properly.
 
-Simply open [Lovable](https://lovable.dev/projects/7ed1ff94-4182-45b5-9369-8825df341f87) and click on Share -> Publish.
+🤝 Contribution
+Feel free to open an issue or submit a pull request if you have ideas for improvements or new features.
 
-## Can I connect a custom domain to my Lovable project?
+📄 License
+This project is open source and available under the MIT License.
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Made with Lovable.
