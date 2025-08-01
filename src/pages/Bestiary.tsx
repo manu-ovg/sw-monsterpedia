@@ -56,11 +56,10 @@ export const Bestiary = () => {
             
             <div className="space-y-4">
               <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-electric to-primary bg-clip-text text-transparent animate-fade-in-up">
-                Monster Bestiary
+                SW Monsterpedia
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Discover the legendary creatures and their powerful abilities. 
-                Search through our comprehensive collection of monsters and their skills.
+                Summoners War Monster Database: Find every monster, every skill, and every ID
               </p>
             </div>
 
