@@ -3,7 +3,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { MonsterCard } from "@/components/MonsterCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { sampleBestiary, sampleMonsters, getMonsterWithSkills } from "@/data/sampleData";
+import { realBestiary, getMonsterWithSkills } from "@/data/sampleData";
 import { BookOpen, Sparkles, Filter } from "lucide-react";
 
 export const Bestiary = () => {
@@ -12,28 +12,31 @@ export const Bestiary = () => {
 
   // Get unique elements for filtering
   const elements = useMemo(() => {
-    const uniqueElements = [...new Set(sampleBestiary.map(m => m.element).filter(Boolean))];
+    const uniqueElements = [...new Set(realBestiary.map(m => m.element).filter(Boolean))];
     return uniqueElements;
   }, []);
 
   // Filter monsters based on search term and element
   const filteredMonsters = useMemo(() => {
-    return sampleBestiary.filter(monster => {
+    return realBestiary.filter(monster => {
       const matchesSearch = searchTerm === "" || 
         monster.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         monster.element?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        monster.type?.toLowerCase().includes(searchTerm.toLowerCase());
+        monster.archetype?.toLowerCase().includes(searchTerm.toLowerCase());
 
       const matchesElement = selectedElement === null || monster.element === selectedElement;
 
       // Also search in skills
       const monsterData = getMonsterWithSkills(monster);
-      const matchesSkills = monsterData?.skills.some(skill => 
-        skill.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        skill.description?.toLowerCase().includes(searchTerm.toLowerCase())
-      ) || false;
+      if (monsterData) {
+        const skills = Object.values(monsterData.skills).filter(Boolean);
+        const matchesSkills = skills.some(skill => 
+          skill?.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        return (matchesSearch || matchesSkills) && matchesElement;
+      }
 
-      return (matchesSearch || matchesSkills) && matchesElement;
+      return matchesSearch && matchesElement;
     });
   }, [searchTerm, selectedElement]);
 
@@ -64,7 +67,7 @@ export const Bestiary = () => {
             <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-electric" />
-                <span>{sampleBestiary.length} Monsters</span>
+                <span>{realBestiary.length} Monsters</span>
               </div>
               <div className="w-1 h-1 bg-muted-foreground rounded-full" />
               <div className="flex items-center gap-2">

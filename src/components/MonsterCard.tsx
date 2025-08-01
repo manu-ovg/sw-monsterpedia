@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BestiaryMonster, MonsterData, getElementColor, getRarityColor } from "@/data/sampleData";
+import { BestiaryMonster, MonsterData, getElementColor, getRarityColor, getSkillsArray } from "@/data/sampleData";
 import { Sparkles, Zap, Shield, Heart, Swords } from "lucide-react";
 
 interface MonsterCardProps {
@@ -22,7 +22,8 @@ const getSkillIcon = (skillType?: string) => {
 
 export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) => {
   const elementColor = getElementColor(bestiaryMonster.element);
-  const rarityColor = getRarityColor(bestiaryMonster.stars);
+  const rarityColor = getRarityColor(bestiaryMonster.natural_stars);
+  const skills = monsterData ? getSkillsArray(monsterData) : [];
 
   return (
     <Card className="group relative overflow-hidden bg-card border-border hover:border-electric/50 transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--electric)/0.3)] hover:-translate-y-2 animate-fade-in-up">
@@ -39,9 +40,9 @@ export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) 
             <h3 className="text-xl font-bold text-foreground group-hover:text-electric transition-colors duration-300">
               {bestiaryMonster.name}
             </h3>
-            {bestiaryMonster.stars && (
+            {bestiaryMonster.natural_stars && (
               <div className="flex items-center gap-1">
-                {Array.from({ length: bestiaryMonster.stars }).map((_, i) => (
+                {Array.from({ length: bestiaryMonster.natural_stars }).map((_, i) => (
                   <Sparkles key={i} className={`w-4 h-4 ${rarityColor}`} />
                 ))}
               </div>
@@ -54,9 +55,9 @@ export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) 
                 {bestiaryMonster.element}
               </Badge>
             )}
-            {bestiaryMonster.type && (
+            {bestiaryMonster.archetype && (
               <Badge variant="outline" className="text-muted-foreground">
-                {bestiaryMonster.type}
+                {bestiaryMonster.archetype}
               </Badge>
             )}
           </div>
@@ -68,36 +69,23 @@ export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) 
             Skills
           </h4>
           
-          {monsterData?.skills ? (
+          {skills.length > 0 ? (
             <div className="space-y-2">
-              {monsterData.skills.map((skill, index) => (
+              {skills.map((skill, index) => (
                 <div 
                   key={skill.skill_id}
                   className="flex items-start gap-3 p-3 rounded-lg bg-secondary/50 hover:bg-secondary/80 transition-colors duration-200 group/skill"
                 >
                   <div className="flex items-center gap-2 min-w-0 flex-1">
                     <div className="flex-shrink-0 text-electric group-hover/skill:text-electric-glow transition-colors duration-200">
-                      {getSkillIcon(skill.type)}
+                      <Zap className="w-4 h-4" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-sm font-medium text-foreground truncate">
                         Skill {index + 1}: {skill.name}
                       </div>
-                      {skill.description && (
-                        <div className="text-xs text-muted-foreground mt-1">
-                          {skill.description}
-                        </div>
-                      )}
                     </div>
                   </div>
-                  {skill.type && (
-                    <Badge 
-                      variant="outline" 
-                      className="text-xs flex-shrink-0 opacity-60 group-hover/skill:opacity-100 transition-opacity duration-200"
-                    >
-                      {skill.type}
-                    </Badge>
-                  )}
                 </div>
               ))}
             </div>
