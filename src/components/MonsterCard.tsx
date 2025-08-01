@@ -33,7 +33,23 @@ export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) 
       {/* Glow effect */}
       <div className="absolute -inset-1 bg-gradient-to-r from-electric/20 to-primary/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
       
-      <div className="relative p-6 space-y-4">
+      <div className="relative space-y-4">
+        {/* Monster Image */}
+        {bestiaryMonster.image_url && (
+          <div className="relative h-32 bg-gradient-to-br from-secondary/50 to-background overflow-hidden">
+            <img 
+              src={bestiaryMonster.image_url} 
+              alt={bestiaryMonster.name}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+          </div>
+        )}
+        
+        <div className="p-6 space-y-4">
         {/* Monster Header */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -84,6 +100,9 @@ export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) 
                       <div className="text-sm font-medium text-foreground truncate">
                         Skill {index + 1}: {skill.name}
                       </div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        ID: {skill.skill_id}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -97,7 +116,8 @@ export const MonsterCard = ({ bestiaryMonster, monsterData }: MonsterCardProps) 
                 ID: {bestiaryMonster.com2us_id}
               </div>
             </div>
-          )}
+           )}
+        </div>
         </div>
       </div>
     </Card>
